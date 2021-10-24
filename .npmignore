@@ -1,0 +1,2 @@
+# We want to publish the data.json but not commit it so
+# we have this .npmignore to override the .gitignore

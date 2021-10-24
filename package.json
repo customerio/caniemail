@@ -1,0 +1,14 @@
+{
+  "name": "caniemail",
+  "version": "0.14.0",
+  "description": "Can I email data",
+  "main": "index.js",
+  "author": "Avi Goldman <avi@useparcel.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "execa": "^5.1.1",
+    "node-fetch": "^3.0.0",
+    "semver": "^7.3.5",
+    "slugify": "^1.6.1"
+  }
+}
