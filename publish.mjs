@@ -56,18 +56,26 @@ import slugify from "slugify";
 
   console.log("Pushing update to GitHub");
 
-  await execa("git", [
-    "config",
-    "--global",
-    "user.name",
-    process.env.GITHUB_ACTOR,
-  ]);
-  await execa("git", [
-    "config",
-    "--global",
-    "user.email",
-    `${process.env.GITHUB_ACTOR}@users.noreply.github.com`,
-  ]);
+  console.log(
+    (
+      await execa("git", [
+        "config",
+        "--global",
+        "user.name",
+        process.env.GITHUB_ACTOR,
+      ])
+    ).stdout
+  );
+  console.log(
+    (
+      await execa("git", [
+        "config",
+        "--global",
+        "user.email",
+        `${process.env.GITHUB_ACTOR}@users.noreply.github.com`,
+      ])
+    ).stdout
+  );
   await execa("git", ["add", "./package.json"]);
   await execa("git", [
     "commit",
