@@ -54,28 +54,24 @@ import slugify from "slugify";
     internalTagName,
   ]);
 
-  console.log("Pushing update to GitHub");
+  console.log("Pushing update to GitHub...");
 
-  console.log(
-    (
-      await execa("git", [
-        "config",
-        "--global",
-        "user.name",
-        process.env.GITHUB_ACTOR,
-      ])
-    ).stdout
-  );
-  console.log(
-    (
-      await execa("git", [
-        "config",
-        "--global",
-        "user.email",
-        `${process.env.GITHUB_ACTOR}@users.noreply.github.com`,
-      ])
-    ).stdout
-  );
+  // tell git who we are
+  await execa("git", [
+    "config",
+    "--global",
+    "user.name",
+    process.env.GITHUB_ACTOR,
+  ]);
+
+  await execa("git", [
+    "config",
+    "--global",
+    "user.email",
+    `${process.env.GITHUB_ACTOR}@users.noreply.github.com`,
+  ]);
+
+  // add, commit and push it
   await execa("git", ["add", "./package.json"]);
   await execa("git", [
     "commit",
@@ -83,6 +79,7 @@ import slugify from "slugify";
     `[chore] published version ${newVersion}`,
   ]);
   await execa("git", ["push"]);
+  console.log("Success!");
 })();
 
 async function getPackageTags(name) {
