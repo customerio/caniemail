@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
+      - run: npm install --only=dev
       - run: node publish.mjs
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
