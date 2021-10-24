@@ -20,12 +20,12 @@ import slugify from "slugify";
   const tags = await getPackageTags(packageJson.name);
 
   // no update to publish
-  if (tags.includes(internalTagName)) {
+  if (tags[internalTagName]) {
     console.log("No update to publish. Exiting...");
     return;
   }
 
-  const newVersion = semver.inc(packageJson.version, "minor");
+  const newVersion = semver.inc(tags["latest"], "minor");
   console.log("Publishing new version: ", newVersion);
 
   console.log("Updating package.json...");
@@ -66,5 +66,11 @@ import slugify from "slugify";
 
 async function getPackageTags(name) {
   const { stdout } = await execa("npm", ["dist-tag", "ls", name]);
-  return stdout.split("\n").map((line) => line.split(":")[0].trim());
+  const tags = {};
+  for (const line of stdout.split("\n")) {
+    const [tag, version] = line.split(":");
+    tags[tag] = version;
+  }
+
+  return tags;
 }
