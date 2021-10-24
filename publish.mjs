@@ -56,7 +56,11 @@ import slugify from "slugify";
 
   console.log("Pushing update to GitHub");
   await execa("git", ["add", "./package.json"]);
-  await execa("git", ["commit", `'[chore] published version ${newVersion}'`]);
+  await execa("git", [
+    "commit",
+    "-m",
+    `[chore] published version ${newVersion}`,
+  ]);
   await execa("git", ["push"]);
 })();
 
