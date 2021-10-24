@@ -1,6 +1,6 @@
 {
   "name": "caniemail2",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Can I email data",
   "main": "index.js",
   "author": "Avi Goldman <avi@useparcel.com>",
