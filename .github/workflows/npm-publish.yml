@@ -5,6 +5,7 @@ name: Publish Package
 on:
   schedule:
     - cron: "0 0 * * *" # run once a day
+  workflow_dispatch:
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
